@@ -17,28 +17,47 @@ const Home = () => {
 			<ul>
 				<li>
 					<div className="d-flex">
-						<input
+						<textarea
 							type="text"
 							value={inputValue}
-							onChange={(e) => setInputValue(e.target.value)}>what do you need to do</input>
+							onChange={(e) => setInputValue(e.target.value)}
+							placeholder="Things to do">
+						</textarea>
+
 						<button onClick={() => {
 							setList(List.concat([inputValue]));
 							setInputValue("");
-						}}>Click</button>
+						}}>Add</button>
 
 					</div>
 				</li>
 
 
 				{
-					List.map((task) => (<li>{task}</li>))
-				}
+    List.map((task, currentIndex) => (
+        <li>
+            {task}
+            <i
+                className="fa-regular fa-trash-can"
+                onClick={() =>
+                    setList(
+                        List.filter(
+                            (t, index) => index !== currentIndex
+                        )
+                    )
+                }
+            ></i>
+        </li>
+    ))
+}
+
+				
 
 
 
 
 			</ul>
-			<div>23 tasks </div>
+			<div className="task">23 tasks </div>
 		</div>
 
 	)
@@ -65,7 +84,7 @@ export default Home;
 // 				love!
 // 			</p>
 // 		</div>
-	// );i class="fa-regular fa-trash-can"></i>
+// );i class="fa-regular fa-trash-can"></i>
 // };
 
 
